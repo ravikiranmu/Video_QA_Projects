@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+	<style>
+		body {
+			font: 12px/18px "Lucida Grande", Arial, Verdana, sans-serif;
+			background-color: #fff;
+			color: #333;
+		}
+
+		h3 {
+		    color: maroon;
+		    /* margin-left: 10px; */
+		}
+
+		p.legend {
+			color: #2F4F4F;
+			padding-top: 0px;
+	    	padding-bottom: 0px;
+		    /*padding-left: 0px;
+		    padding-right: 0px;*/
+		    margin-top: 2px;
+			margin-bottom: 2px;
+			/*margin-right: 0px;
+			margin-left: 6px;*/
+
+		}
+
+		p.header {
+			margin-bottom: 2px;
+		}
+
+		p.desc {
+			font-style: italic;
+		    margin-top: 6px;
+			margin-bottom: 6px;
+		}
+
+		table.dur_table {
+			border-top: 1px solid #cdd0d4;
+			border-bottom: 1px solid #cdd0d4;
+			border-collapse: collapse;
+		}
+
+		tr.highlight {
+			background: #f3f3f3;
+		}
+
+		table.variants, table.meta {
+		    border-top: 1px solid #cdd0d4;
+			border-bottom: 1px solid #cdd0d4;
+			border-collapse: collapse;
+			/*width: 900px;*/
+		}
+
+		td, th {
+		    padding-left: 6px;
+		    padding-right: 6px;
+		    text-align: right;
+		}
+
+		td.error, th.error {
+		    padding-left: 6px;
+		    padding-right: 6px;
+		    text-align: right;
+		}
+
+		td.center, th.center {
+			text-align: center;
+		}
+
+		td.agroup, th.agroup {
+			width: 54px;
+		}
+
+		th.left, td.left {
+			padding-left: 10px;
+		    padding-right: 10px;
+		    text-align: left;
+		}
+
+		th.meta {
+			text-align: center;
+		}
+		
+		td.meta {
+			border-bottom: 1px solid #cdd0d4;
+		}
+
+		.idCircle {
+		    border-radius: 20%;
+		    padding: 1px;
+
+		    background: #606060;
+		    border: 1px solid #606060;
+		    color: #fff;
+		    text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+    <h3>HLS Validation Report</h3>
+    <p>Stream type: VOD</p>
+<p><a href="http://192.168.1.5/HLS_Segments_After_Cut/master.m3u8">http://192.168.1.5/HLS_Segments_After_Cut/master.m3u8</a></p>
+    <h3>Variant Overview</h3>
+<table class="variants">
+  <tr>
+   <th class="agroup">Audio ID</th>
+   <th class="center">#</th>
+   <th>Max Rate</th>
+   <th>% Diff.</th>
+   <th>Avg Rate</th>
+   <th>% Diff</th>
+   <th>Resolution</th>
+   <th>DR</th>
+   <th>IDR Int.</th>
+   <th>Framerate</th>
+   <th>Codec</th>
+   <th>Profile</th>
+   <th>Level</th>
+   <th>Encryption</th>
+   <th>Audio Track Info</th>
+   <th>% Proc.</th>
+  </tr>
+  <tr>
+    <td>AUDIO</td>
+    <td><div class="idCircle">1</div></td>
+    <td>3996</td>
+    <td>0.0%</td>
+    <td>2168</td>
+    <td>4.4%</td>
+    <td>1280 x 534</td>
+    <td>SDR</td>
+    <td>2.629</td>
+    <td>24.000</td>
+    <td>AVC</td>
+    <td>High</td>
+    <td>3.1</td>
+    <td>-</td>
+    <td>AAC-LC, 2-CH</td>
+    <td>100%</td>
+  </tr>
+</table>
+    <p class="legend">Average duration processed: 0:10:19</p>
+    <h3>Rendition Overview</h3>
+<table class="variants">
+  <tr>
+   <th class="agroup">Group ID</th>
+   <th class="center">#</th>
+   <th>Max Rate</th>
+   <th>Type</th>
+   <th>Name</th>
+   <th>Codec</th>
+   <th>Lang.</th>
+   <th>Encryption</th>
+   <th>% Proc.</th>
+  </tr>
+  <tr>
+    <td>subs</td>
+    <td class="center">2</td>
+    <td>0</td>
+    <td>Subtitle</td>
+    <td>English</td>
+    <td>WebVTT</td>
+    <td>en</td>
+    <td>-</td>
+    <td>100%</td>
+  </tr>
+</table>
+    <p class="legend">Average duration processed: 0:07:27</p>
+    <h3>Checked against <em>HLS Authoring Specification for Apple Devices</em></h3>
+    <h3>Must Fix Issues</h3>
+    <h4>1. The server MUST deliver playlists using gzip content-encoding</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    <li>All Renditions</li>
+    <li>Master Playlist</li>
+    </ul>
+    <h4>2. I-frame playlists ( EXT-X-I-FRAME-STREAM-INF ) MUST be provided to support scrubbing and scanning UI</h4>
+    <ul style="list-style-type:disc">
+    <li>Master Playlist</li>
+    </ul>
+    <h4>3. You MUST provide multiple bit rates of video</h4>
+    <ul style="list-style-type:disc">
+    <li>Master Playlist</li>
+    </ul>
+    <h4>4. (Segment) Different content duration detected between discontinuities</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h3>Should Fix Issues</h3>
+    <h4>5. You SHOULD use the EXT-X-INDEPENDENT-SEGMENTS tag in the master playlist</h4>
+    <ul style="list-style-type:disc">
+    <li>Master Playlist</li>
+    </ul>
+    <h4>6. Master playlists SHOULD be delivered using Transport Layer Security (TLS)</h4>
+    <ul style="list-style-type:disc">
+    <li>Master Playlist</li>
+    </ul>
+    <h4>7. Media playlists SHOULD be delivered using TLS</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    <li>All Renditions</li>
+    </ul>
+    <h4>8. You SHOULD deliver video and audio as separate streams</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>9. Audio data SHOULD be provided as an elementary audio stream</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>10. Key frames (IDRs) SHOULD be present every two seconds</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>11. Target durations SHOULD be 6 seconds.</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>12. Content protection SHOULD follow the FairPlay Streaming (FPS) specification</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>13. You SHOULD support stream failover</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    </ul>
+    <h4>14. Media segments SHOULD be delivered over TLS</h4>
+    <ul style="list-style-type:disc">
+    <li>All Variants</li>
+    <li>All Renditions</li>
+    </ul>
+    <h3>Report Information</h3>
+<table>
+  <tr>
+    <td>MediaStreamValidator version:</td>
+    <td class="left">Version 1.2.1 (373.56-190322)</td>
+  </tr>
+  <tr>
+    <td>Report generator version:</td>
+    <td class="left">1.2.1 (373.56-190322)</td>
+  </tr>
+  <tr>
+    <td>Report generation date:</td>
+    <td class="left">05/18/19 23:11:48</td>
+  </tr>
+  <tr>
+    <td>JSON format version:</td>
+    <td class="left">1.1</td>
+  </tr>
+  <tr>
+    <td>JSON data timestamp:</td>
+    <td class="left">05/18/19 23:09:28</td>
+  </tr>
+</table>
+<hr/>
+    <p class="legend">Note on tables: all bitrates are expressed in kb/s, IDs for default startup variants are highlighted in dark grey, entries annotated with an asterisk ('*') do not have a consistent value over the entire stream, entries in parentheses are from master playlist rather than media.</p>
+</body>
+</html>
