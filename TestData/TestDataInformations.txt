@@ -1,0 +1,16 @@
+AV Content(Open Source) : http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4
+Description : Tears of Steel was realized with crowd-funding by users of the open source 3D creation tool Blender. Target was to improve and test a complete open and free pipeline for visual effects in film - and to make a compelling sci-fi film in Amsterdam, the Netherlands.  The film itself, and all raw material used for making it, have been released under the Creatieve Commons 3.0 Attribution license. Visit the tearsofsteel.org website to find out more about this, or to purchase the 4-DVD box with a lot of extras.  (CC) Blender Foundation - http://www.tearsofsteel.org
+Duration : 12min14secs
+
+Created HLS segments(VoD) using below tools on MAC machine
+1. MediaFileSegmenter - Used to create the AV segments, media manifest and plist files)
+2. MediaSubtitleSegmenter - Used to create the subtitle segments(subtitle manifest, vtt files)
+3. VariantPlaylistCreator - Used to create the Master manifest files
+https://github.com/ravikiranmu/Video_QA_Projects/blob/master/TestData/HLS_Segments_Before_Cut
+Note : Hosted this VoD content from apache server and verified the AV playback and subtitle sync functions on safari browser
+
+AV Chopped from 5min08secs to 7min06secs
+5min08secs to 7min06secs AV segments entries are removed from AV media manifest file(prog_index.m3u8) file and kept "EXT-X-DISCONTINUITY" tag at that place to simulate the AV chopped out VoD content
+https://github.com/ravikiranmu/Video_QA_Projects/blob/master/TestData/HLS_Segments_After_Cut
+Note : Hosted this VoD content from apache server and verified the AV playback and subtitle sync functions on safari browser. FYI., Seamless switching also verified during chopped time interval. i.e., AV and Subtitle are decoded properly and sync also proper for the entire playback
+After chopped out the AV, VoD content duration is 10min19secs
