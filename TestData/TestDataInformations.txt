@@ -10,7 +10,8 @@ https://github.com/ravikiranmu/Video_QA_Projects/blob/master/TestData/HLS_Segmen
 Note : Hosted this VoD content from apache server and verified the AV playback and subtitle sync functions on safari browser
 
 AV Chopped from 5min08secs to 7min06secs
-5min08secs to 7min06secs AV segments entries are removed from AV media manifest file(prog_index.m3u8) file and kept "EXT-X-DISCONTINUITY" tag at that place to simulate the AV chopped out VoD content
+5min08secs to 7min06secs AV segments entries are removed from AV media manifest file(prog_index.m3u8) file and kept "EXT-X-DISCONTINUITY" tag at that place
+Similarly subtitle segment entries are removed from subtitle manifest file(english.m3u8) and kept "EXT-X-DISCONTINUITY" tag at that place
 https://github.com/ravikiranmu/Video_QA_Projects/blob/master/TestData/HLS_Segments_After_Cut
 Note : Hosted this VoD content from apache server and verified the AV playback and subtitle sync functions on safari browser. FYI., Seamless switching also verified during chopped time interval. i.e., AV and Subtitle are decoded properly and sync also proper for the entire playback
 After chopped out the AV, VoD content duration is 10min19secs
