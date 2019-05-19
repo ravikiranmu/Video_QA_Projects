@@ -1,0 +1,34 @@
+Discontinuity Test result on Media Manifest file:
+-------------------------------------------------
+Discontinuity observed after fileSequence32.ts segment
+Media Manifest
+--------------
+fileSequence32.ts 
+#EXT-X-DISCONTINUITY 
+#EXTINF:10.00000, 
+#EXT-X-BITRATE:1689 
+fileSequence46.ts
+
+Discontinuity Test result on Subtitle Manifest file:
+-------------------------------------------------
+Discontinuity observed after english13.ts segment
+Subtitle Manifest
+--------------
+english13.webvtt 
+#EXT-X-DISCONTINUITY 
+#EXTINF:10.00000, 
+english26.webvtt
+
+AV Total Duration Test Result
+---------------------------
+AV Duration(in mins):Pre Cut HLS Content 12.0
+AV Duration(in mins):Post Cut HLS Content 10.0
+
+Pass. Difference between AV duration(in mins) of pre-cut content and post cut content is 2.0
+
+Subtitle Total Duration Test Result
+---------------------------
+Subtitle Duration(in mins):Pre Cut HLS Content 9.0
+Subtitle Duration(in mins):Post Cut HLS Content 7.0
+
+Pass. Difference between Subtitle duration(in mins) of pre-cut content and post cut content is 2.0
