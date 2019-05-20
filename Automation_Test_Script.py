@@ -3,12 +3,15 @@ import os
 import re
 
 #Default URLS - Hostname/ipaddress need to be updated as per web server going to use for testing
-mediaManifestURLPostCut = 'http://192.168.1.3/HLS_Segments_After_Cut/prog_index.m3u8'
-subtitleManifestURLPostCut = 'http://192.168.1.3/HLS_Segments_After_Cut/english.m3u8'
-mediaManifestURLPreCut = 'http://192.168.1.3/HLS_Segments_Before_Cut/prog_index.m3u8'
-subtitleManifestURLPreCut = 'http://192.168.1.3/HLS_Segments_Before_Cut/english.m3u8'
+mediaManifestURLPostCut = 'http://192.168.3.100/HLS_Segments_After_Cut/prog_index.m3u8'
+subtitleManifestURLPostCut = 'http://192.168.3.100/HLS_Segments_After_Cut/english.m3u8'
+mediaManifestURLPreCut = 'http://192.168.3.100/HLS_Segments_Before_Cut/prog_index.m3u8'
+subtitleManifestURLPreCut = 'http://192.168.3.100/HLS_Segments_Before_Cut/english.m3u8'
 
 def mediaManifestDownload(url):
+    """
+    This function will download the media manifest file from web-server
+    """
     try:
         # Downloading media manifest file and story as file in current directory
         r = requests.get(url, allow_redirects=True)
@@ -28,6 +31,9 @@ def mediaManifestDownload(url):
         print "Error observed while downloading media manifest file",e
         
 def subtitleManifestDownload(url):
+    """
+    This function will download the subtitle manifest file from web-server
+    """
     try:
         # Downloading media manifest file and story as file in current directory
         r = requests.get(url, allow_redirects=True)
@@ -47,6 +53,9 @@ def subtitleManifestDownload(url):
         print "Error observed while downloading media manifest file",e
 
 def testDiscontinuityOnMediaManifest():
+    """
+    This function will test the presences of #EXT-X-DISCONTINUITY tag on media manifest file
+    """
     try:        
         index = 0
         lineCount = 1
@@ -64,7 +73,10 @@ def testDiscontinuityOnMediaManifest():
         print "Discontinuity Test result on Media Manifest file:"
         print "-------------------------------------------------"
         if discontinuityLineNo != 0:
-            print "Discontinuity observed after fileSequence{}.ts segment".format(segmentno-1)
+            if mediaManifest[discontinuityLineNo] == '#EXT-X-DISCONTINUITY':
+                print "Discontinuity observed after fileSequence{}.ts segment".format(segmentno-1)
+            else:
+                print "Discontinuity tag is not present and the result is Fail"
             print 'Media Manifest'
             print '--------------'
             print mediaManifest[discontinuityLineNo-1], '\n', mediaManifest[discontinuityLineNo], "\n", mediaManifest[discontinuityLineNo+1], "\n", mediaManifest[discontinuityLineNo+2], "\n", mediaManifest[discontinuityLineNo+3]
@@ -75,6 +87,9 @@ def testDiscontinuityOnMediaManifest():
         print e
         
 def testDiscontinuityOnSubtitleManifest():
+    """
+    This function will test the presences of #EXT-X-DISCONTINUITY tag on subtitle manifest file
+    """
     try:        
         index = 0
         lineCount = 1
@@ -92,7 +107,11 @@ def testDiscontinuityOnSubtitleManifest():
         print "\nDiscontinuity Test result on Subtitle Manifest file:"
         print "-------------------------------------------------"
         if discontinuityLineNo != 0:
-            print "Discontinuity observed after english{}.ts segment".format(segmentno-1)
+            if subtitleManifest[discontinuityLineNo] == '#EXT-X-DISCONTINUITY':
+                print "Discontinuity observed after english{}.ts segment".format(segmentno-1)
+            else:
+                print "Discontinuity tag is not present and the result is Fail"
+            
             print 'Subtitle Manifest'
             print '--------------'
             print subtitleManifest[discontinuityLineNo-1], '\n', subtitleManifest[discontinuityLineNo], "\n", subtitleManifest[discontinuityLineNo+1], "\n", subtitleManifest[discontinuityLineNo+2]
@@ -103,6 +122,9 @@ def testDiscontinuityOnSubtitleManifest():
         print e
 
 def testtotalStreamDuration():
+    """
+    This function will test total duration of the VOD content after the cut
+    """
     mediaManifestPostCut = mediaManifestDownload(mediaManifestURLPostCut)
     subtitleManifestPostCut = subtitleManifestDownload(subtitleManifestURLPostCut)
     mediaManifestPreCut = mediaManifestDownload(mediaManifestURLPreCut)
@@ -170,6 +192,9 @@ def testtotalStreamDuration():
         print "\nFail. Difference between Subtitle duration(in mins) of pre-cut content and post cut content is", round(differenceMediaDuraiton), "\nExpected difference = 2mins"
 
 def testChopOutDuration():
+    """
+    This function will test the chop duration on both media manifest file and subtitle manifest file to determine the video sync with subtitle
+    """
     mediaManifestPostCut = mediaManifestDownload(mediaManifestURLPostCut)
     subtitleManifestPostCut = subtitleManifestDownload(subtitleManifestURLPostCut)
     mediaManifestPreCut = mediaManifestDownload(mediaManifestURLPreCut)
