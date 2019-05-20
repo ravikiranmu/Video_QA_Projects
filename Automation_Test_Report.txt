@@ -32,3 +32,13 @@ Subtitle Duration(in mins):Pre Cut HLS Content 9.0
 Subtitle Duration(in mins):Post Cut HLS Content 7.0
 
 Pass. Difference between Subtitle duration(in mins) of pre-cut content and post cut content is 2.0
+
+Chop Duration test result for AV:
+----------------------------------------
+AV cut happened from 5.16666666667 mins and resumed at 7.08333333333
+
+Chop Duration test result for Subtitle:
+----------------------------------------
+Subtitle cut happened from 5.0 mins and resumed at 7.0
+
+AV is synced with Subtitle
